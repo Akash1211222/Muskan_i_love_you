@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>For Muskaan</title>
+<meta name="description" content="A private letter." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<button id="music-toggle" class="music-toggle" aria-label="Play ambient music" aria-pressed="false" type="button">
+  <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 4.5v15l12-7.5-12-7.5z" fill="currentColor"/></svg>
+  <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" hidden><path d="M6 4.5h4v15H6v-15zm8 0h4v15h-4v-15z" fill="currentColor"/></svg>
+  <span class="music-label">sound</span>
+</button>
+
+<main id="top">
+
+  <!-- SCREEN 1: INTRO -->
+  <section class="screen screen-intro" id="s1" aria-label="Introduction">
+    <div class="intro-content reveal">
+      <p class="eyebrow">for</p>
+      <h1 class="title-hero">Muskaan</h1>
+      <p class="subtitle">
+        Not a justification.<br>
+        Not a request.<br>
+        Just something I wanted you to read.
+      </p>
+      <button class="btn btn-ghost" data-scroll-to="#s2" type="button">Enter</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: THE PAUSE -->
+  <section class="screen screen-pause" id="s2" aria-label="A pause">
+    <div class="breathing-wrap" aria-hidden="true">
+      <div class="breathing-circle"></div>
+    </div>
+    <div class="pause-content">
+      <p class="line reveal">Before anything else...</p>
+      <p class="line reveal delay-1">Take one breath.</p>
+      <p class="line reveal delay-2">Because some things deserve to be understood,<br>not rushed.</p>
+      <button class="btn btn-ghost reveal delay-3" data-scroll-to="#s3" type="button">Continue</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: ACCOUNTABILITY -->
+  <section class="screen screen-dark" id="s3" aria-label="Accountability">
+    <div class="stack-lines">
+      <p class="line line-big reveal">I was wrong.</p>
+      <p class="line reveal delay-1">When you asked me about smoking,<br>I didn't tell you the truth.</p>
+      <p class="line reveal delay-2">And I know that the painful part<br>wasn't just the cigarette.</p>
+      <p class="line reveal delay-3">It was the fact that you trusted me enough to ask,<br>and I didn't give you the honesty you deserved.</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: NO EXCUSES -->
+  <section class="screen screen-dark" id="s4" aria-label="No excuses">
+    <div class="stack-lines">
+      <h2 class="section-title reveal">I'm not going to explain it away.</h2>
+      <p class="line reveal delay-1">
+        I could give you reasons.<br>
+        I could tell you I was scared of being judged.<br>
+        I could say I didn't want to lose you.
+      </p>
+      <p class="line reveal delay-2">But none of those reasons make what I did right.</p>
+      <p class="highlight reveal delay-3">Understanding my mistake<br>doesn't mean excusing it.</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 5: THE REAL APOLOGY -->
+  <section class="screen screen-letter" id="s5" aria-label="The real apology">
+    <div class="letter-card reveal">
+      <p class="letter-text">
+        Muskaan,<br><br>
+        I'm sorry.<br><br>
+        Not because I'm afraid of losing you.<br><br>
+        Not because I want this situation to become normal again.<br><br>
+        I'm sorry because I genuinely understand<br>
+        that I hurt your trust.<br><br>
+        And you deserved better from me.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCREEN 6: TRUST -->
+  <section class="screen screen-warm" id="s6" aria-label="Trust">
+    <div class="stack-lines">
+      <h2 class="section-title reveal">I know a sorry isn't enough.</h2>
+      <p class="line reveal delay-1">Trust doesn't come back<br>because someone asks for it.</p>
+      <p class="line reveal delay-2">It comes back slowly.</p>
+      <div class="trust-words reveal delay-3">
+        <span class="word">HONESTY</span>
+        <span class="word word-2">CONSISTENCY</span>
+        <span class="word word-3">TIME</span>
+      </div>
+      <p class="line reveal delay-4">So I'm not asking you to trust me today.</p>
+      <p class="highlight reveal delay-4">I'd rather earn it.</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 7: THE SMOKING PROMISE -->
+  <section class="screen screen-dark" id="s7" aria-label="What I'm going to change">
+    <div class="stack-lines">
+      <h2 class="section-title reveal">What I'm going to change</h2>
+      <p class="line reveal delay-1">I genuinely want to quit smoking.</p>
+      <p class="line reveal delay-2">
+        Not as a performance for you.<br>
+        Not as a way to prove something overnight.
+      </p>
+      <p class="line reveal delay-3">But because I know I want to become better<br>for myself too.</p>
+      <div class="progress-visual reveal delay-4" aria-hidden="true">
+        <div class="progress-track"><div class="progress-glow"></div></div>
+        <p class="progress-label">in progress — no promises of perfection, just effort</p>
+      </div>
+      <button class="btn btn-ghost reveal delay-4" data-scroll-to="#s8" type="button">I'll let my actions speak.</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 8: SPIRITUAL REFLECTION -->
+  <section class="screen screen-reflect" id="s8" aria-label="Reflection">
+    <div class="glow-orb-wrap" aria-hidden="true"><div class="glow-orb"></div></div>
+    <div class="stack-lines">
+      <p class="line line-serif reveal">Maybe growth isn't about becoming perfect.</p>
+      <p class="line line-serif reveal delay-2">
+        Maybe it's about becoming honest enough<br>
+        to look at the parts of ourselves<br>
+        we'd rather hide.
+      </p>
+      <p class="highlight reveal delay-4">And brave enough to change them.</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 9: WHAT I DON'T EXPECT -->
+  <section class="screen screen-dark" id="s9" aria-label="What I don't expect">
+    <div class="cards-wrap">
+      <div class="float-card reveal">
+        <p>I don't expect instant forgiveness.</p>
+      </div>
+      <div class="float-card reveal delay-1">
+        <p>I don't expect you to forget.</p>
+      </div>
+      <div class="float-card reveal delay-2">
+        <p>I don't expect everything to feel normal immediately.</p>
+      </div>
+    </div>
+    <p class="highlight centered reveal delay-3">
+      All I hope for is the chance<br>
+      to show you who I can become through my actions.
+    </p>
+  </section>
+
+  <!-- SCREEN 10: ABOUT HER -->
+  <section class="screen screen-warm" id="s10" aria-label="About her">
+    <div class="stack-lines">
+      <h2 class="section-title reveal">And then there's you...</h2>
+      <p class="line reveal delay-1">I don't admire you just because you're beautiful.</p>
+      <p class="line reveal delay-2">I admire the way you think.</p>
+      <p class="line reveal delay-2">I admire your emotional depth.</p>
+      <p class="line reveal delay-3">I admire the way you understand people.</p>
+      <p class="line reveal delay-3">I admire the person you are becoming.</p>
+      <p class="highlight reveal delay-4">
+        Your ability to look beneath the surface<br>
+        is one of the things that made me fall for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCREEN 11: HER WIN -->
+  <section class="screen screen-celebrate" id="s11" aria-label="Her win">
+    <div class="ember-field" aria-hidden="true"></div>
+    <div class="stack-lines">
+      <h2 class="section-title reveal">Yesterday, you won.</h2>
+      <p class="line reveal delay-1">And watching you shine<br>made me genuinely happy.</p>
+      <p class="line reveal delay-2">
+        You worked for that moment.<br>
+        You deserved that moment.<br>
+        And I'm proud of you.
+      </p>
+      <p class="highlight reveal delay-3">
+        Your win was yours.<br>
+        I was simply lucky enough to witness it.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCREEN 12: THE LETTER -->
+  <section class="screen screen-letter" id="s12" aria-label="One last thing">
+    <div class="letter-card letter-card-large reveal">
+      <p class="letter-header">One last thing...</p>
+      <p class="letter-text">
+        Muskaan,<br><br>
+        I don't know how much time it will take<br>
+        for everything to feel okay again.<br><br>
+        Maybe it will be quick.<br>
+        Maybe it won't.<br><br>
+        And I don't want to rush you.<br><br>
+        I just want you to know that I see my mistake.<br><br>
+        I know where I went wrong.<br><br>
+        And I genuinely want to do better.<br><br>
+        Not just say better things.<br>
+        Not just make a beautiful website.<br>
+        Actually do better.<br><br>
+        Because if someone matters to you,<br>
+        their trust shouldn't be something you take for granted.
+      </p>
+      <p class="letter-signature">Always honest with you,<br>Akash</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 13: THE FINAL MOMENT -->
+  <section class="screen screen-final" id="s13" aria-label="The final moment">
+    <div class="final-light" aria-hidden="true"></div>
+    <div class="stack-lines final-lines">
+      <p class="line reveal">I don't need an answer right now.</p>
+      <p class="line reveal delay-2">Just wanted you to know...</p>
+      <p class="line line-big reveal delay-4">I'm genuinely sorry.</p>
+      <p class="line reveal delay-6">
+        And I'm genuinely grateful<br>
+        that you came into my life.
+      </p>
+      <p class="small-note reveal delay-7">Take your time.</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 14: OPTIONAL INTERACTION -->
+  <section class="screen screen-choice" id="s14" aria-label="Closing">
+    <div class="choice-wrap reveal">
+      <button class="btn btn-text" id="read-again" type="button">Read again</button>
+      <span class="choice-divider" aria-hidden="true">·</span>
+      <button class="btn btn-text" id="close-letter" type="button">Close</button>
+    </div>
+  </section>
+
+</main>
+
+<div id="goodnight-overlay" class="goodnight-overlay" aria-hidden="true">
+  <p class="goodnight-text">Goodnight, Muskaan.</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
