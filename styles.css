@@ -992,6 +992,142 @@ button {
   max-height: 2000px;
 }
 
+/* ---------- The proposal (screen 14) ---------- */
+
+:root {
+  --dawn-cream: #fff6ea;
+  --dawn-peach: #ffe2bd;
+  --dawn-gold: #ffcf9e;
+  --dawn-text: #5b3327;
+  --dawn-text-soft: #8a6a52;
+  --dawn-maroon: #7a2e3a;
+  --dawn-accent: #a85d2a;
+}
+
+.screen-propose {
+  background: linear-gradient(180deg, var(--charcoal) 0%, var(--midnight) 100%);
+  transition: background 2.4s var(--ease-soft);
+  overflow: hidden;
+}
+
+.screen-propose.bright-open {
+  background: radial-gradient(ellipse at 50% 25%, var(--dawn-cream) 0%, var(--dawn-peach) 48%, var(--dawn-gold) 100%);
+}
+
+.propose-glow-wrap { z-index: 0; }
+
+.propose-glow {
+  background: radial-gradient(circle, rgba(255, 220, 180, 0.35) 0%, transparent 70%);
+  animation: none;
+  opacity: 0;
+  transition: opacity 1.8s var(--ease-soft);
+}
+
+.screen-propose.bright-open .propose-glow {
+  animation: orb-pulse 7s ease-in-out infinite;
+  opacity: 1;
+}
+
+.propose-envelope { position: relative; z-index: 1; }
+
+.propose-card {
+  background: linear-gradient(160deg, #fffaf2 0%, #ffe9d2 100%);
+  border-color: rgba(168, 93, 42, 0.35);
+  box-shadow: 0 30px 90px rgba(120, 60, 20, 0.28), 0 0 70px rgba(255, 210, 150, 0.45);
+}
+
+.propose-kicker {
+  color: var(--dawn-accent);
+  opacity: 1;
+}
+
+.propose-text p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.1vw, 1.4rem);
+  line-height: 1.9;
+  color: var(--dawn-text);
+  text-align: left;
+  margin-bottom: 1.3em;
+}
+
+.propose-question {
+  font-weight: 500;
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem) !important;
+  color: var(--dawn-maroon) !important;
+}
+
+.propose-note {
+  font-size: 0.92rem !important;
+  color: var(--dawn-text-soft) !important;
+}
+
+.propose-final {
+  font-size: clamp(1.3rem, 3vw, 1.9rem) !important;
+  color: var(--dawn-maroon) !important;
+  margin-top: 0.4em !important;
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.propose-heart {
+  background: none;
+  border: none;
+  padding: 6px;
+  font-size: 1.3em;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  filter: drop-shadow(0 0 10px rgba(255, 120, 120, 0.55));
+  transition: transform 0.4s var(--ease-soft);
+  touch-action: manipulation;
+}
+
+.propose-heart:hover,
+.propose-heart:focus-visible {
+  transform: scale(1.15);
+}
+
+.propose-heart.pulsing {
+  animation: heart-pulse 0.7s var(--ease-soft);
+}
+
+@keyframes heart-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Spark burst (screen 14) ---------- */
+
+.spark-field {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.spark-field span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff8ea 0%, var(--gold) 55%, transparent 75%);
+  opacity: 0;
+  animation: spark-burst ease-out forwards;
+}
+
+@keyframes spark-burst {
+  0% { opacity: 1; transform: translate(-50%, -50%) translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0.3); }
+}
+
 /* ---------- Final moment (screen 13) ---------- */
 
 .screen-final {

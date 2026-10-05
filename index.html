@@ -38,7 +38,8 @@
   <button class="progress-dot" data-target="#s11" aria-label="Her win"><span>Her win</span></button>
   <button class="progress-dot" data-target="#s12" aria-label="The letter"><span>The letter</span></button>
   <button class="progress-dot" data-target="#s13" aria-label="The final moment"><span>The final moment</span></button>
-  <button class="progress-dot" data-target="#s14" aria-label="Closing"><span>Closing</span></button>
+  <button class="progress-dot" data-target="#s14" aria-label="A letter for you"><span>A letter for you</span></button>
+  <button class="progress-dot" data-target="#s15" aria-label="Closing"><span>Closing</span></button>
 </nav>
 
 <button id="music-toggle" class="music-toggle" aria-label="Play ambient music" aria-pressed="false" type="button">
@@ -306,8 +307,44 @@
     </div>
   </section>
 
-  <!-- SCREEN 14: OPTIONAL INTERACTION -->
-  <section class="screen screen-choice" id="s14" aria-label="Closing">
+  <!-- SCREEN 14: THE PROPOSAL -->
+  <section class="screen screen-propose" id="s14" aria-label="A letter for you">
+    <div class="spark-field" id="spark-field" aria-hidden="true"></div>
+    <div class="glow-orb-wrap propose-glow-wrap" aria-hidden="true"><div class="glow-orb propose-glow"></div></div>
+
+    <div class="letter-envelope propose-envelope reveal" id="propose-envelope">
+      <button class="wax-seal propose-seal" id="propose-seal" type="button" aria-expanded="false">
+        <span class="wax-seal-ring"></span>
+        <span class="wax-seal-label">open<br>my heart</span>
+      </button>
+      <p class="seal-hint">one more letter, just for you</p>
+
+      <div class="letter-card letter-card-large propose-card tilt-card" id="propose-card" data-tilt>
+        <div class="card-sheen" aria-hidden="true"></div>
+        <p class="letter-header propose-kicker">A Letter For You, Muskaan</p>
+
+        <div class="propose-text">
+          <p>Muskaan,</p>
+          <p>Kabhi kabhi zindagi mein kuch log milte hain,<br>aur unke aane ka reason samajhne mein waqt lagta hai.<br>Aap mere liye shayad wahi insaan ho.</p>
+          <p>Aapse milne ke baad mujhe ye samajh aaya ki kisi ko pasand karna sirf uski smile, beauty ya presence se nahi hota. Kabhi kabhi kisi ki soch, uski soul, uski sensitivity aur duniya ko dekhne ka tareeka dil ko touch kar deta hai.</p>
+          <p>Aapne mujhe mere ek aise part se milwaya hai jise shayad main khud bhi properly nahi samajhta tha.</p>
+          <p>Aur haan, main perfect nahi hoon.<br>Maine galti ki hai. Maine aapse ek sach chhupaya, aur mujhe pata hai ki trust ko hurt karna kitna painful ho sakta hai. Main aapse ye nahi kehna chahta ki bas mujhe maaf kar dijiye. Main chahta hoon ki agar kabhi aap mujhe dobara trust karein, toh woh mere words ki wajah se nahi, mere actions ki wajah se ho.</p>
+          <p>Shayad pyaar ka matlab kisi perfect insaan ko dhoondhna nahi hota.<br>Shayad pyaar ka matlab hota hai kisi aise insaan se milna jiske saamne hum apne imperfect version ko bhi honestly dekh sakein, aur phir saath milkar better version banne ki himmat karein.</p>
+          <p>Aur Muskaan...<br>I want to choose you.<br>Sirf aaj nahi.<br>Sirf tab nahi jab sab kuch beautiful ho.<br>Balki un ordinary days mein bhi, jab life complicated ho, jab opinions different ho, jab misunderstandings ho, aur jab hume ek dusre ko samajhne ke liye thoda extra patience rakhna pade.</p>
+          <p>Main aapse koi perfect future promise nahi kar raha.<br>Bas ek honest intention rakh raha hoon.<br>Aapke saath grow karne ka.<br>Aapko understand karne ka.<br>Aapki individuality ko respect karne ka.<br>Aur jab kabhi main galat hounga, toh apne ego ke peeche chhupne ke bajaye usse accept karne ka.</p>
+          <p>Aapne meri life mein ek beautiful feeling introduce ki hai.<br>Aur aaj main aapse bas ek sawaal poochna chahta hoon...</p>
+          <p class="propose-question">Kya aap mere saath is journey ko ek chance dena chahengi?</p>
+          <p class="propose-note">No pressure.<br>No perfect answer.<br>Bas dil se pooch raha hoon.</p>
+          <p class="propose-final">Will you be my person, Muskaan?
+            <button class="propose-heart" id="propose-heart" type="button" aria-label="Send a little spark">❤️</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 15: OPTIONAL INTERACTION -->
+  <section class="screen screen-choice" id="s15" aria-label="Closing">
     <div class="choice-wrap reveal">
       <button class="btn btn-text magnetic" id="read-again" type="button">Read again</button>
       <span class="choice-divider" aria-hidden="true">·</span>

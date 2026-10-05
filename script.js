@@ -342,23 +342,81 @@
     });
   }
 
-  /* ---------------- Wax seal letter (screen 12) ---------------- */
+  /* ---------------- Wax seal letters (screens 12 & 14) ---------------- */
 
   function initWaxSeal() {
-    const seal = document.getElementById("wax-seal");
-    const envelope = document.getElementById("letter-envelope");
-    const card = document.getElementById("letter-card-12");
-    if (!seal || !envelope || !card) return;
+    document.querySelectorAll(".wax-seal").forEach((seal) => {
+      const envelope = seal.closest(".letter-envelope");
+      const card = envelope && envelope.querySelector(".letter-card");
+      if (!envelope || !card) return;
 
-    seal.addEventListener("click", () => {
-      envelope.classList.add("opened");
-      seal.setAttribute("aria-expanded", "true");
+      seal.addEventListener("click", () => {
+        envelope.classList.add("opened");
+        seal.setAttribute("aria-expanded", "true");
 
-      const h = card.scrollHeight;
-      card.style.maxHeight = `${h}px`;
-      setTimeout(() => {
-        card.style.maxHeight = "none";
-      }, 1300);
+        const screen = envelope.closest(".screen");
+        if (screen) screen.classList.add("bright-open");
+
+        const h = card.scrollHeight;
+        card.style.maxHeight = `${h}px`;
+        setTimeout(() => {
+          card.style.maxHeight = "none";
+        }, 1300);
+
+        if (seal.id === "propose-seal") {
+          const rect = seal.getBoundingClientRect();
+          spawnSparkBurst(document.getElementById("spark-field"), 36, {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2,
+          });
+        }
+      });
+    });
+  }
+
+  /* ---------------- Spark burst (screen 14) ---------------- */
+
+  function spawnSparkBurst(field, count, origin) {
+    if (!field || prefersReducedMotion) return;
+
+    const originX = origin ? origin.x : window.innerWidth / 2;
+    const originY = origin ? origin.y : window.innerHeight / 2;
+
+    for (let i = 0; i < count; i++) {
+      const span = document.createElement("span");
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 120 + Math.random() * 260;
+      const tx = Math.cos(angle) * distance;
+      const ty = Math.sin(angle) * distance;
+      const duration = 1 + Math.random() * 0.9;
+
+      span.style.left = `${originX}px`;
+      span.style.top = `${originY}px`;
+      span.style.setProperty("--tx", `${tx}px`);
+      span.style.setProperty("--ty", `${ty}px`);
+      span.style.animationDuration = `${duration}s`;
+      span.style.animationDelay = `${Math.random() * 0.15}s`;
+
+      field.appendChild(span);
+      setTimeout(() => span.remove(), (duration + 0.2) * 1000);
+    }
+  }
+
+  function initProposeHeart() {
+    const heart = document.getElementById("propose-heart");
+    const field = document.getElementById("spark-field");
+    if (!heart) return;
+
+    heart.addEventListener("click", () => {
+      heart.classList.remove("pulsing");
+      void heart.offsetWidth;
+      heart.classList.add("pulsing");
+
+      const rect = heart.getBoundingClientRect();
+      spawnSparkBurst(field, 20, {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      });
     });
   }
 
@@ -564,7 +622,7 @@
 
   musicToggle.addEventListener("click", toggleMusic);
 
-  /* ---------------- Screen 14: Read again / Close ---------------- */
+  /* ---------------- Screen 15: Read again / Close ---------------- */
 
   const readAgainBtn = document.getElementById("read-again");
   const closeBtn = document.getElementById("close-letter");
@@ -593,4 +651,5 @@
   initTrustWords();
   initWaxSeal();
   initFinalLight();
+  initProposeHeart();
 })();
