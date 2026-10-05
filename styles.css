@@ -258,9 +258,68 @@ main {
 .screen > .intro-content,
 .screen > .pause-content,
 .screen > .choice-wrap,
-.screen > .letter-card {
+.screen > .letter-card,
+.screen > .continue-btn {
   position: relative;
   z-index: 1;
+}
+
+/* ---------- Continue button (per-screen) ---------- */
+
+.continue-btn {
+  display: inline-flex;
+  margin-top: clamp(28px, 5vw, 48px);
+}
+
+.continue-btn::after {
+  content: "↓";
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.4s var(--ease);
+}
+
+.continue-btn:hover::after,
+.continue-btn:focus-visible::after {
+  transform: translateY(3px);
+}
+
+.letter-continue {
+  margin-top: 36px;
+}
+
+/* ---------- Tap-glow (lightweight interactivity on key lines) ---------- */
+
+.tap-glow {
+  cursor: pointer;
+  transition: text-shadow 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.tap-glow:hover,
+.tap-glow:active {
+  text-shadow: 0 0 26px var(--gold-soft);
+}
+
+.tap-glow:active {
+  transform: scale(0.985);
+}
+
+/* ---------- Per-screen entrance marker ---------- */
+
+.screen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+  transform: translateX(-50%);
+  transition: width 1.6s var(--ease-soft) 0.15s;
+  pointer-events: none;
+}
+
+.screen.in-view::after {
+  width: min(360px, 60%);
 }
 
 /* ---------- Typography ---------- */

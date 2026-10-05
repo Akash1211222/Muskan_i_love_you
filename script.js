@@ -78,6 +78,28 @@
     });
   }
 
+  /* ---------------- Per-page entrance marker ---------------- */
+
+  const screens = document.querySelectorAll(".screen");
+
+  if ("IntersectionObserver" in window) {
+    const screenObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("in-view");
+        });
+      },
+      { threshold: 0.18 }
+    );
+    screens.forEach((s) => screenObserver.observe(s));
+  } else {
+    screens.forEach((s) => s.classList.add("in-view"));
+  }
+
+  /* ---------------- iOS :active fix (enables tap feedback on touch) ---------------- */
+
+  document.addEventListener("touchstart", () => {}, { passive: true });
+
   /* ---------------- Custom cursor ---------------- */
 
   function initCursor() {
