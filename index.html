@@ -13,10 +13,36 @@
 <body>
 
 <canvas id="particle-canvas" aria-hidden="true"></canvas>
+<div id="scroll-glow" class="scroll-glow" aria-hidden="true"></div>
+
+<div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
+
+<div class="progress-rail" aria-hidden="true">
+  <div id="progress-fill" class="progress-fill"></div>
+</div>
+
+<nav class="progress-nav" aria-label="Jump to section">
+  <button class="progress-dot" data-target="#s1" aria-label="For Muskaan"><span>For Muskaan</span></button>
+  <button class="progress-dot" data-target="#s2" aria-label="The pause"><span>The pause</span></button>
+  <button class="progress-dot" data-target="#s3" aria-label="Accountability"><span>Accountability</span></button>
+  <button class="progress-dot" data-target="#s4" aria-label="No excuses"><span>No excuses</span></button>
+  <button class="progress-dot" data-target="#s5" aria-label="The real apology"><span>The real apology</span></button>
+  <button class="progress-dot" data-target="#s6" aria-label="Trust"><span>Trust</span></button>
+  <button class="progress-dot" data-target="#s7" aria-label="What I'm changing"><span>What I'm changing</span></button>
+  <button class="progress-dot" data-target="#s8" aria-label="Reflection"><span>Reflection</span></button>
+  <button class="progress-dot" data-target="#s9" aria-label="What I don't expect"><span>What I don't expect</span></button>
+  <button class="progress-dot" data-target="#s10" aria-label="About her"><span>About her</span></button>
+  <button class="progress-dot" data-target="#s11" aria-label="Her win"><span>Her win</span></button>
+  <button class="progress-dot" data-target="#s12" aria-label="The letter"><span>The letter</span></button>
+  <button class="progress-dot" data-target="#s13" aria-label="The final moment"><span>The final moment</span></button>
+  <button class="progress-dot" data-target="#s14" aria-label="Closing"><span>Closing</span></button>
+</nav>
 
 <button id="music-toggle" class="music-toggle" aria-label="Play ambient music" aria-pressed="false" type="button">
   <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 4.5v15l12-7.5-12-7.5z" fill="currentColor"/></svg>
   <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" hidden><path d="M6 4.5h4v15H6v-15zm8 0h4v15h-4v-15z" fill="currentColor"/></svg>
+  <span class="eq-bars" aria-hidden="true"><span></span><span></span><span></span></span>
   <span class="music-label">sound</span>
 </button>
 
@@ -25,34 +51,50 @@
   <!-- SCREEN 1: INTRO -->
   <section class="screen screen-intro" id="s1" aria-label="Introduction">
     <div class="intro-content reveal">
-      <p class="eyebrow">for</p>
-      <h1 class="title-hero">Muskaan</h1>
+      <p class="eyebrow" data-split="chars">for</p>
+      <h1 class="title-hero" data-split="chars">Muskaan</h1>
       <p class="subtitle">
         Not a justification.<br>
         Not a request.<br>
         Just something I wanted you to read.
       </p>
-      <button class="btn btn-ghost" data-scroll-to="#s2" type="button">Enter</button>
+      <button class="btn btn-ghost magnetic" data-scroll-to="#s2" type="button">
+        <span>Enter</span>
+      </button>
     </div>
+    <p class="scroll-hint reveal delay-3" aria-hidden="true">
+      <span class="scroll-hint-line"></span>
+      scroll
+    </p>
   </section>
 
   <!-- SCREEN 2: THE PAUSE -->
   <section class="screen screen-pause" id="s2" aria-label="A pause">
     <div class="breathing-wrap" aria-hidden="true">
-      <div class="breathing-circle"></div>
+      <svg class="breathing-ring" viewBox="0 0 200 200">
+        <circle class="breathing-ring-track" cx="100" cy="100" r="92"></circle>
+        <circle id="breathing-ring-progress" class="breathing-ring-progress" cx="100" cy="100" r="92"></circle>
+      </svg>
+      <div class="breathing-circle" id="breathing-circle"></div>
     </div>
     <div class="pause-content">
       <p class="line reveal">Before anything else...</p>
       <p class="line reveal delay-1">Take one breath.</p>
       <p class="line reveal delay-2">Because some things deserve to be understood,<br>not rushed.</p>
-      <button class="btn btn-ghost reveal delay-3" data-scroll-to="#s3" type="button">Continue</button>
+
+      <button class="btn btn-ghost magnetic breathe-btn reveal delay-3" id="breathe-toggle" type="button" aria-pressed="false">
+        <span id="breathe-btn-label">Breathe with me</span>
+      </button>
+      <p class="breathe-cue" id="breathe-cue" aria-live="polite"></p>
+
+      <button class="btn btn-text reveal delay-3" data-scroll-to="#s3" type="button">Continue</button>
     </div>
   </section>
 
   <!-- SCREEN 3: ACCOUNTABILITY -->
   <section class="screen screen-dark" id="s3" aria-label="Accountability">
     <div class="stack-lines">
-      <p class="line line-big reveal">I was wrong.</p>
+      <p class="line line-big reveal" data-split="words">I was wrong.</p>
       <p class="line reveal delay-1">When you asked me about smoking,<br>I didn't tell you the truth.</p>
       <p class="line reveal delay-2">And I know that the painful part<br>wasn't just the cigarette.</p>
       <p class="line reveal delay-3">It was the fact that you trusted me enough to ask,<br>and I didn't give you the honesty you deserved.</p>
@@ -62,7 +104,7 @@
   <!-- SCREEN 4: NO EXCUSES -->
   <section class="screen screen-dark" id="s4" aria-label="No excuses">
     <div class="stack-lines">
-      <h2 class="section-title reveal">I'm not going to explain it away.</h2>
+      <h2 class="section-title reveal" data-split="words">I'm not going to explain it away.</h2>
       <p class="line reveal delay-1">
         I could give you reasons.<br>
         I could tell you I was scared of being judged.<br>
@@ -75,7 +117,8 @@
 
   <!-- SCREEN 5: THE REAL APOLOGY -->
   <section class="screen screen-letter" id="s5" aria-label="The real apology">
-    <div class="letter-card reveal">
+    <div class="letter-card tilt-card reveal" data-tilt>
+      <div class="card-sheen" aria-hidden="true"></div>
       <p class="letter-text">
         Muskaan,<br><br>
         I'm sorry.<br><br>
@@ -91,14 +134,24 @@
   <!-- SCREEN 6: TRUST -->
   <section class="screen screen-warm" id="s6" aria-label="Trust">
     <div class="stack-lines">
-      <h2 class="section-title reveal">I know a sorry isn't enough.</h2>
+      <h2 class="section-title reveal" data-split="words">I know a sorry isn't enough.</h2>
       <p class="line reveal delay-1">Trust doesn't come back<br>because someone asks for it.</p>
       <p class="line reveal delay-2">It comes back slowly.</p>
+
+      <p class="word-hint reveal delay-3" aria-hidden="true">touch each word</p>
       <div class="trust-words reveal delay-3">
-        <span class="word">HONESTY</span>
-        <span class="word word-2">CONSISTENCY</span>
-        <span class="word word-3">TIME</span>
+        <button class="word" type="button" aria-expanded="false" data-meaning="Telling the truth even when it costs me something — not just when it's easy.">
+          HONESTY
+        </button>
+        <button class="word word-2" type="button" aria-expanded="false" data-meaning="Being the same person today as I was yesterday, and as I'll be tomorrow.">
+          CONSISTENCY
+        </button>
+        <button class="word word-3" type="button" aria-expanded="false" data-meaning="Not rushing you. Letting proof happen slowly, not all at once.">
+          TIME
+        </button>
       </div>
+      <p class="word-meaning" id="word-meaning" aria-live="polite"></p>
+
       <p class="line reveal delay-4">So I'm not asking you to trust me today.</p>
       <p class="highlight reveal delay-4">I'd rather earn it.</p>
     </div>
@@ -107,7 +160,7 @@
   <!-- SCREEN 7: THE SMOKING PROMISE -->
   <section class="screen screen-dark" id="s7" aria-label="What I'm going to change">
     <div class="stack-lines">
-      <h2 class="section-title reveal">What I'm going to change</h2>
+      <h2 class="section-title reveal" data-split="words">What I'm going to change</h2>
       <p class="line reveal delay-1">I genuinely want to quit smoking.</p>
       <p class="line reveal delay-2">
         Not as a performance for you.<br>
@@ -118,13 +171,15 @@
         <div class="progress-track"><div class="progress-glow"></div></div>
         <p class="progress-label">in progress — no promises of perfection, just effort</p>
       </div>
-      <button class="btn btn-ghost reveal delay-4" data-scroll-to="#s8" type="button">I'll let my actions speak.</button>
+      <button class="btn btn-ghost magnetic reveal delay-4" data-scroll-to="#s8" type="button">
+        <span>I'll let my actions speak.</span>
+      </button>
     </div>
   </section>
 
   <!-- SCREEN 8: SPIRITUAL REFLECTION -->
   <section class="screen screen-reflect" id="s8" aria-label="Reflection">
-    <div class="glow-orb-wrap" aria-hidden="true"><div class="glow-orb"></div></div>
+    <div class="glow-orb-wrap" aria-hidden="true"><div class="glow-orb" id="glow-orb"></div></div>
     <div class="stack-lines">
       <p class="line line-serif reveal">Maybe growth isn't about becoming perfect.</p>
       <p class="line line-serif reveal delay-2">
@@ -139,13 +194,16 @@
   <!-- SCREEN 9: WHAT I DON'T EXPECT -->
   <section class="screen screen-dark" id="s9" aria-label="What I don't expect">
     <div class="cards-wrap">
-      <div class="float-card reveal">
+      <div class="float-card tilt-card reveal" data-tilt>
+        <div class="card-sheen" aria-hidden="true"></div>
         <p>I don't expect instant forgiveness.</p>
       </div>
-      <div class="float-card reveal delay-1">
+      <div class="float-card tilt-card reveal delay-1" data-tilt>
+        <div class="card-sheen" aria-hidden="true"></div>
         <p>I don't expect you to forget.</p>
       </div>
-      <div class="float-card reveal delay-2">
+      <div class="float-card tilt-card reveal delay-2" data-tilt>
+        <div class="card-sheen" aria-hidden="true"></div>
         <p>I don't expect everything to feel normal immediately.</p>
       </div>
     </div>
@@ -158,7 +216,7 @@
   <!-- SCREEN 10: ABOUT HER -->
   <section class="screen screen-warm" id="s10" aria-label="About her">
     <div class="stack-lines">
-      <h2 class="section-title reveal">And then there's you...</h2>
+      <h2 class="section-title reveal" data-split="words">And then there's you...</h2>
       <p class="line reveal delay-1">I don't admire you just because you're beautiful.</p>
       <p class="line reveal delay-2">I admire the way you think.</p>
       <p class="line reveal delay-2">I admire your emotional depth.</p>
@@ -173,9 +231,9 @@
 
   <!-- SCREEN 11: HER WIN -->
   <section class="screen screen-celebrate" id="s11" aria-label="Her win">
-    <div class="ember-field" aria-hidden="true"></div>
+    <div class="ember-field" id="ember-field" aria-hidden="true"></div>
     <div class="stack-lines">
-      <h2 class="section-title reveal">Yesterday, you won.</h2>
+      <h2 class="section-title reveal" data-split="words">Yesterday, you won.</h2>
       <p class="line reveal delay-1">And watching you shine<br>made me genuinely happy.</p>
       <p class="line reveal delay-2">
         You worked for that moment.<br>
@@ -191,31 +249,40 @@
 
   <!-- SCREEN 12: THE LETTER -->
   <section class="screen screen-letter" id="s12" aria-label="One last thing">
-    <div class="letter-card letter-card-large reveal">
-      <p class="letter-header">One last thing...</p>
-      <p class="letter-text">
-        Muskaan,<br><br>
-        I don't know how much time it will take<br>
-        for everything to feel okay again.<br><br>
-        Maybe it will be quick.<br>
-        Maybe it won't.<br><br>
-        And I don't want to rush you.<br><br>
-        I just want you to know that I see my mistake.<br><br>
-        I know where I went wrong.<br><br>
-        And I genuinely want to do better.<br><br>
-        Not just say better things.<br>
-        Not just make a beautiful website.<br>
-        Actually do better.<br><br>
-        Because if someone matters to you,<br>
-        their trust shouldn't be something you take for granted.
-      </p>
-      <p class="letter-signature">Always honest with you,<br>Akash</p>
+    <div class="letter-envelope reveal" id="letter-envelope">
+      <button class="wax-seal" id="wax-seal" type="button" aria-expanded="false">
+        <span class="wax-seal-ring"></span>
+        <span class="wax-seal-label">open<br>the letter</span>
+      </button>
+      <p class="seal-hint">one last thing, when you're ready</p>
+
+      <div class="letter-card letter-card-large tilt-card" id="letter-card-12" data-tilt>
+        <div class="card-sheen" aria-hidden="true"></div>
+        <p class="letter-header">One last thing...</p>
+        <p class="letter-text">
+          Muskaan,<br><br>
+          I don't know how much time it will take<br>
+          for everything to feel okay again.<br><br>
+          Maybe it will be quick.<br>
+          Maybe it won't.<br><br>
+          And I don't want to rush you.<br><br>
+          I just want you to know that I see my mistake.<br><br>
+          I know where I went wrong.<br><br>
+          And I genuinely want to do better.<br><br>
+          Not just say better things.<br>
+          Not just make a beautiful website.<br>
+          Actually do better.<br><br>
+          Because if someone matters to you,<br>
+          their trust shouldn't be something you take for granted.
+        </p>
+        <p class="letter-signature">Always honest with you,<br>Akash</p>
+      </div>
     </div>
   </section>
 
   <!-- SCREEN 13: THE FINAL MOMENT -->
   <section class="screen screen-final" id="s13" aria-label="The final moment">
-    <div class="final-light" aria-hidden="true"></div>
+    <button class="final-light" id="final-light" type="button" aria-label="A small light"></button>
     <div class="stack-lines final-lines">
       <p class="line reveal">I don't need an answer right now.</p>
       <p class="line reveal delay-2">Just wanted you to know...</p>
@@ -231,9 +298,9 @@
   <!-- SCREEN 14: OPTIONAL INTERACTION -->
   <section class="screen screen-choice" id="s14" aria-label="Closing">
     <div class="choice-wrap reveal">
-      <button class="btn btn-text" id="read-again" type="button">Read again</button>
+      <button class="btn btn-text magnetic" id="read-again" type="button">Read again</button>
       <span class="choice-divider" aria-hidden="true">·</span>
-      <button class="btn btn-text" id="close-letter" type="button">Close</button>
+      <button class="btn btn-text magnetic" id="close-letter" type="button">Close</button>
     </div>
   </section>
 
