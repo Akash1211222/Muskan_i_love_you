@@ -410,11 +410,17 @@
   if (canvas && !prefersReducedMotion) {
     const ctx = canvas.getContext("2d");
     let width, height, particles;
-    const PARTICLE_COUNT = 70;
+    const PARTICLE_COUNT = isCoarsePointer ? 44 : 70;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     function makeParticles() {

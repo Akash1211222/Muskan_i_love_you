@@ -25,9 +25,13 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { -webkit-tap-highlight-color: transparent; }
 
 html {
   scroll-behavior: smooth;
+  background: var(--midnight);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -35,9 +39,11 @@ body {
   color: var(--ivory);
   font-family: var(--sans);
   overflow-x: hidden;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   cursor: default;
+  overscroll-behavior-y: none;
 }
 
 body.has-cursor,
@@ -116,7 +122,7 @@ body.has-cursor .cursor-ring {
 
 .progress-rail {
   position: fixed;
-  top: 0;
+  top: env(safe-area-inset-top, 0px);
   left: 0;
   width: 100%;
   height: 2px;
@@ -204,6 +210,8 @@ main {
 
 .screen {
   min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -211,9 +219,14 @@ main {
   justify-content: center;
   text-align: center;
   padding: clamp(24px, 6vw, 80px) clamp(20px, 8vw, 120px);
+  padding-left: max(clamp(20px, 8vw, 120px), calc(env(safe-area-inset-left) + 20px));
+  padding-right: max(clamp(20px, 8vw, 120px), calc(env(safe-area-inset-right) + 20px));
   position: relative;
   transition: background 1.6s var(--ease);
 }
+
+.screen-intro { padding-top: calc(clamp(24px, 6vw, 80px) + env(safe-area-inset-top)); }
+.screen-choice { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
 
 .screen-dark { background: var(--charcoal); }
 .screen-intro { background: radial-gradient(ellipse at 50% 40%, var(--charcoal-2) 0%, var(--midnight) 70%); }
@@ -232,7 +245,12 @@ main {
   z-index: 0;
 }
 .screen-final { background: #050506; }
-.screen-choice { background: var(--midnight); min-height: 60vh; }
+.screen-choice {
+  background: var(--midnight);
+  min-height: 60vh;
+  min-height: 60svh;
+  min-height: 60dvh;
+}
 
 .screen > .stack-lines,
 .screen > .cards-wrap,
@@ -338,6 +356,10 @@ main {
 
 /* ---------- Buttons ---------- */
 
+button {
+  touch-action: manipulation;
+}
+
 .btn {
   font-family: var(--sans);
   font-size: 0.85rem;
@@ -372,8 +394,12 @@ main {
 .btn-text {
   font-size: 0.78rem;
   color: var(--ivory-faint);
-  padding: 8px 4px;
+  padding: 14px 6px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   border-bottom: 1px solid transparent;
+  touch-action: manipulation;
 }
 
 .btn-text:hover,
@@ -633,11 +659,12 @@ main {
   background: none;
   border: none;
   border-bottom: 1px solid transparent;
-  padding: 4px 2px;
+  padding: 12px 6px;
   cursor: pointer;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 1s var(--ease), transform 1s var(--ease), border-color 0.4s var(--ease), text-shadow 0.4s var(--ease);
+  touch-action: manipulation;
 }
 
 .trust-words.in-view .word { opacity: 1; transform: translateY(0); }
@@ -925,6 +952,18 @@ main {
   animation: final-pulse 4s ease-in-out infinite;
   position: relative;
   transition: transform 0.5s var(--ease-soft), box-shadow 0.5s var(--ease);
+  touch-action: manipulation;
+}
+
+.final-light::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
 }
 
 .final-light:hover,
@@ -1009,13 +1048,14 @@ main {
 
 .music-toggle {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: calc(20px + env(safe-area-inset-top));
+  right: calc(20px + env(safe-area-inset-right));
   z-index: 50;
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
+  min-height: 44px;
   border-radius: 999px;
   border: 1px solid var(--glass-border);
   background: var(--glass);
@@ -1027,6 +1067,7 @@ main {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: border-color 0.4s var(--ease), color 0.4s var(--ease);
+  touch-action: manipulation;
 }
 
 .music-toggle:hover,
