@@ -259,7 +259,8 @@ main {
 .screen > .pause-content,
 .screen > .choice-wrap,
 .screen > .letter-card,
-.screen > .continue-btn {
+.screen > .continue-btn,
+.screen > .plane-arrival {
   position: relative;
   z-index: 1;
 }
@@ -1193,7 +1194,69 @@ button {
 .final-lines .line { color: var(--ivory-dim); }
 .final-lines .line-big { color: var(--gold); }
 
-/* ---------- Screen 14: choice ---------- */
+/* ---------- Paper plane arrival (screen 13) ---------- */
+
+.plane-arrival {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(36px, 6vw, 64px);
+  min-height: 140px;
+}
+
+.paper-plane {
+  color: var(--gold);
+  filter: drop-shadow(0 0 16px var(--gold-soft));
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.paper-plane.flying {
+  animation: plane-fly-in 1.9s var(--ease-soft) forwards;
+}
+
+@keyframes plane-fly-in {
+  0% { transform: translate(65vw, -42vh) rotate(38deg) scale(0.5); opacity: 0; }
+  12% { opacity: 1; }
+  68% { transform: translate(0, 0) rotate(-10deg) scale(1.2); opacity: 1; }
+  84% { transform: translate(0, 0) rotate(5deg) scale(0.93); }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+}
+
+.plane-impact-ring {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  margin-left: -35px;
+  margin-top: -35px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-soft);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.plane-impact-ring.rippling {
+  animation: final-ripple 1.2s var(--ease-soft);
+}
+
+.plane-cta {
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft);
+  pointer-events: none;
+}
+
+.plane-cta.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ---------- Screen 15: choice ---------- */
 
 .choice-wrap {
   display: flex;
@@ -1311,7 +1374,9 @@ button {
   .final-light,
   .wax-seal-ring,
   .eq-bars span,
-  .scroll-hint-line {
+  .scroll-hint-line,
+  .paper-plane,
+  .plane-impact-ring {
     animation: none !important;
   }
   .reveal,

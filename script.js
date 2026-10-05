@@ -483,6 +483,52 @@
     });
   }
 
+  /* ---------------- Paper plane arrival (screen 13) ---------------- */
+
+  function initPaperPlane() {
+    const container = document.getElementById("plane-arrival");
+    const plane = document.getElementById("paper-plane");
+    const ring = document.getElementById("plane-impact-ring");
+    const cta = document.getElementById("plane-cta");
+    if (!container || !plane || !cta) return;
+
+    if (prefersReducedMotion) {
+      plane.style.opacity = "1";
+      cta.classList.add("visible");
+      return;
+    }
+
+    const land = () => {
+      if (ring) {
+        ring.classList.remove("rippling");
+        void ring.offsetWidth;
+        ring.classList.add("rippling");
+      }
+      cta.classList.add("visible");
+    };
+
+    plane.addEventListener("animationend", land, { once: true });
+
+    if ("IntersectionObserver" in window) {
+      let triggered = false;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !triggered) {
+              triggered = true;
+              plane.classList.add("flying");
+              observer.disconnect();
+            }
+          });
+        },
+        { threshold: 0.6 }
+      );
+      observer.observe(container);
+    } else {
+      plane.classList.add("flying");
+    }
+  }
+
   /* ---------------- Background particle field ---------------- */
 
   const canvas = document.getElementById("particle-canvas");
@@ -651,5 +697,6 @@
   initTrustWords();
   initWaxSeal();
   initFinalLight();
+  initPaperPlane();
   initProposeHeart();
 })();
